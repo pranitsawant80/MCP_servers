@@ -18,7 +18,7 @@ A Model Context Protocol (MCP) server built with FastMCP that allows users to ma
 
 # Prerequisites
 
-* Python 3.12+
+* Python 3.8+
 * UV Package Manager
 * Claude Desktop
 

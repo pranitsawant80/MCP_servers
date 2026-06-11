@@ -1,100 +1,49 @@
-# Journal Tracker MCP Server
+# For Users Cloning This Repository
 
-A Model Context Protocol (MCP) server built with FastMCP that allows users to maintain a daily journal, record diary entries, track moods and day ratings, and generate summaries from their journal history.
+After cloning this repository, follow these steps:
 
-## Features
-
-* Create daily journal entries
-* Update existing entries
-* Delete entries
-* Retrieve entries by ID
-* List entries within a date range
-* Track mood and day ratings
-* Summarize journal activity
-* Analyze mood trends
-* Generate data for AI-powered reflections and summaries
-
----
-
-# Prerequisites
-
-* Python 3.12+
-* UV Package Manager
-* Claude Desktop
-
----
-
-# Install UV
-
-## Windows (PowerShell)
-
-```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-
-## macOS/Linux
+## 1. Clone the Repository
 
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+git clone https://github.com/pranitsawant80/MCP_servers.git
+cd MCP_servers/Journal_Tracker_Server
 ```
 
-Verify installation:
+Or open the project directly in VS Code:
+
+```bash
+code .
+```
+
+---
+
+## 2. Install UV
+
+Verify UV is installed:
 
 ```bash
 uv --version
 ```
 
----
+If not installed:
 
-# Clone or Create Project
-
-Create a new project directory:
+### Windows
 
 ```bash
-mkdir journal_tracker_server
-cd journal_tracker_server
+pip install uv
 ```
 
----
-
-# Initialize Project
-
-Create a UV project:
+### macOS/Linux
 
 ```bash
-uv init
-```
-
-This creates:
-
-```text
-journal_tracker_server/
-├── pyproject.toml
-├── README.md
-└── src/
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ---
 
-# Configure pyproject.toml
+## 3. Install Dependencies
 
-Replace contents with:
-
-```toml
-[project]
-name = "journal_tracker_server"
-version = "0.1.0"
-description = "An MCP server that helps users maintain a daily journal, record thoughts, track moods and day ratings, and generate summaries and insights from journal entries."
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "fastmcp>=3.4.2"
-]
-```
-
----
-
-# Install Dependencies
+From the project root:
 
 ```bash
 uv sync
@@ -106,79 +55,60 @@ or
 uv add fastmcp
 ```
 
+This will create the virtual environment and install all required packages.
+
 ---
 
-# Project Structure
+## 4. Verify pyproject.toml
 
-```text
-journal_tracker_server/
-│
-├── journal_server.py
-├── journal.db
-├── pyproject.toml
-├── README.md
-└── .venv/
+Normally no changes are required.
+
+The included `pyproject.toml` already contains the required configuration:
+
+```toml
+[project]
+name = "journal_tracker_server"
+version = "0.1.0"
+description = "Journal Tracker MCP Server"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp>=3.4.2"
+]
 ```
 
-Where:
+Only modify this file if:
 
-* `journal_server.py` contains the MCP server code
-* `journal.db` is automatically created by SQLite
-* `.venv` contains project dependencies
+* You want a different Python version.
+* You want to add additional dependencies.
+* You want to rename the project.
 
 ---
 
-# Run MCP Server Locally
+## 5. Run the Server
 
-From the project root:
+Test locally before connecting to Claude Desktop:
 
 ```bash
 uv run journal_server.py
 ```
 
-You should see the MCP server start successfully.
+If the server starts successfully, proceed to the next step.
 
 ---
 
-# Test MCP Inspector (Optional)
+## 6. Update Claude Desktop Configuration
 
-Install MCP Inspector:
+This is the most important step.
 
-```bash
-npx @modelcontextprotocol/inspector
-```
+Open your Claude Desktop configuration file:
 
-Run:
+### Windows
 
-```bash
-npx @modelcontextprotocol/inspector uv run journal_server.py
-```
+go to claude desktop>profile>setting>developer>editconfiguration> edit file 
 
-This opens a browser interface where you can test tools.
+Replace the project path with the location where YOU cloned the repository.
 
----
-
-# Configure Claude Desktop
-
-Locate Claude Desktop configuration file.
-
-## Windows
-
-```text
-%APPDATA%\Claude\claude_desktop_config.json
-```
-
-## macOS
-
-```text
-~/Library/Application Support/Claude/claude_desktop_config.json
-```
-
----
-
-# Example Configuration
-
-Replace paths with your actual project location.
+### Example (Windows)
 
 ```json
 {
@@ -187,7 +117,7 @@ Replace paths with your actual project location.
       "command": "uv",
       "args": [
         "--directory",
-        "C:\\Users\\YourName\\journal_tracker_server",
+        "C:\\Users\\YourName\\Documents\\MCP_servers\\Journal_Tracker_Server", #path to the directory where we have journal_server.py file 
         "run",
         "journal_server.py"
       ]
@@ -196,7 +126,18 @@ Replace paths with your actual project location.
 }
 ```
 
-Example for macOS/Linux:
+note: for getting path to uv file we can give following comman.
+Windows
+Get-Command uv
+Example output:
+C:\Users\YourName\AppData\Roaming\Python\Scripts\uv.exe
+
+macOS
+which uv
+Example output:
+/Users/yourname/.local/bin/uv
+
+### Example (macOS/Linux)
 
 ```json
 {
@@ -205,7 +146,7 @@ Example for macOS/Linux:
       "command": "uv",
       "args": [
         "--directory",
-        "/Users/yourname/journal_tracker_server",
+        "/Users/yourname/MCP_servers/Journal_Tracker_Server",
         "run",
         "journal_server.py"
       ]
@@ -214,220 +155,61 @@ Example for macOS/Linux:
 }
 ```
 
+Only the path needs to be changed.
+
 ---
 
-# Restart Claude Desktop
+## 7. Restart Claude Desktop
 
-After updating the configuration:
+After saving the configuration:
 
-1. Close Claude Desktop
-2. Reopen Claude Desktop
-3. Open a new chat
+1. Close Claude Desktop completely.
+2. Reopen Claude Desktop.
+3. Start a new chat.
 
 Claude should automatically detect the Journal Tracker MCP server.
 
 ---
 
-# Available Tools
+## 8. Verify the Server is Connected
 
-## add_entry
-
-Create a journal entry.
-
-Example:
+Ask Claude:
 
 ```text
-Add a journal entry for today.
-Title: Productive Day
-Mood: Happy
-Rating: Good
-Content: Completed my MCP server project.
+What tools are available?
 ```
+
+You should see tools such as:
+
+* add_entry
+* list_entries
+* get_entry
+* update_entry
+* delete_entry
+* summarize_days
+* summarize_moods
+* get_entries_for_summary
 
 ---
 
-## list_entries
+## VS Code Users
 
-List journal entries between dates.
+If using VS Code:
 
-Example:
-
-```text
-Show my journal entries from 2026-06-01 to 2026-06-30.
-```
-
----
-
-## get_entry
-
-Retrieve a journal entry by ID.
-
-Example:
-
-```text
-Get journal entry 5.
-```
-
----
-
-## update_entry
-
-Update an existing journal entry.
-
-Example:
-
-```text
-Update entry 5 and change mood to Excited.
-```
-
----
-
-## delete_entry
-
-Delete a journal entry.
-
-Example:
-
-```text
-Delete journal entry 5.
-```
-
----
-
-## summarize_days
-
-Summarize entries by rating.
-
-Example:
-
-```text
-How many Good, Average, and Bad days did I have this month?
-```
-
----
-
-## summarize_moods
-
-Analyze mood trends.
-
-Example:
-
-```text
-Show mood statistics for June 2026.
-```
-
----
-
-## get_entries_for_summary
-
-Retrieve entries for AI-generated summaries.
-
-Example:
-
-```text
-Summarize my journal entries from the last 30 days.
-```
-
----
-
-# Recommended Day Ratings
-
-Use one of:
-
-```text
-Excellent
-Good
-Average
-Bad
-Terrible
-```
-
-Or a numeric scale:
-
-```text
-5 = Excellent
-4 = Good
-3 = Average
-2 = Bad
-1 = Terrible
-```
-
----
-
-# Database
-
-The server automatically creates:
-
-```text
-journal.db
-```
-
-with a table:
-
-```sql
-journal_entries
-```
-
-containing:
-
-```text
-id
-entry_date
-title
-content
-day_rating
-mood
-tags
-created_at
-```
-
----
-
-# Example Journal Entry
-
-```text
-Date: 2026-06-11
-Title: Learning MCP
-Mood: Motivated
-Rating: Good
-
-Today I completed my first FastMCP journaling server and successfully integrated it with Claude Desktop.
-```
-
----
-
-# Troubleshooting
-
-## Verify UV
+1. Open the cloned folder.
+2. Open the integrated terminal.
+3. Run:
 
 ```bash
-uv --version
+uv sync
 ```
 
-## Verify FastMCP
-
-```bash
-uv pip list
-```
-
-## Run Server Directly
+4. Test:
 
 ```bash
 uv run journal_server.py
 ```
 
-## Check Claude Desktop Logs
+5. Configure Claude Desktop with your local project path.
 
-If Claude cannot connect, verify:
-
-* Project path is correct
-* UV is installed
-* Dependencies are installed
-* JSON configuration is valid
-* Claude Desktop has been restarted
-
----
-
-# License
-
-MIT License
+No additional VS Code configuration is required.

@@ -181,29 +181,5 @@ def get_entries_for_summary(start_date, end_date):
 
         return [dict(zip(cols, row)) for row in cur.fetchall()]
 
-@mcp.tool()
-def get_statistics():
-    '''Get overall journal statistics.'''
-
-    with sqlite3.connect(DB_PATH) as c:
-
-        total_entries = c.execute(
-            "SELECT COUNT(*) FROM journal_entries"
-        ).fetchone()[0]
-
-        ratings = c.execute(
-            "SELECT day_rating, COUNT(*) FROM journal_entries GROUP BY day_rating"
-        ).fetchall()
-
-        moods = c.execute(
-            "SELECT mood, COUNT(*) FROM journal_entries GROUP BY mood"
-        ).fetchall()
-
-        return {
-            "total_entries": total_entries,
-            "ratings": [{"rating": r[0], "count": r[1]} for r in ratings],
-            "moods": [{"mood": m[0], "count": m[1]} for m in moods]
-        }
-
 if __name__ == "__main__":
     mcp.run()

@@ -82,7 +82,7 @@ journal_tracker_server/
 
 # Configure pyproject.toml
 
-Replace contents with:
+Give description if any:
 
 ```toml
 [project]
@@ -95,6 +95,7 @@ dependencies = [
     "fastmcp>=3.4.2"
 ]
 ```
+(Note: when we install dependencies those will be automatically updated here. No need to update manually)
 
 ---
 
@@ -103,8 +104,7 @@ dependencies = [
 ```bash
 uv sync
 ```
-
-or
+(Note: UV automatically manages the virtual environment. You do not need to manually activate `.venv` when using `uv run`)
 
 ```bash
 uv add fastmcp

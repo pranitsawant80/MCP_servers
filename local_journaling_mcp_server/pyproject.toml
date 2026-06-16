@@ -1,9 +1,0 @@
-[project]
-name = "journal_tracker_server"
-version = "0.1.0"
-description = "An MCP server that helps users maintain a daily journal, record thoughts, track moods and day ratings, and generate summaries and insights from journal entries."
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "fastmcp>=3.4.2",
-]

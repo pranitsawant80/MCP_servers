@@ -167,7 +167,8 @@ Locate Claude Desktop configuration file.
 ```text
 %APPDATA%\Claude\claude_desktop_config.json
 ```
-
+(Note: To locate the configuration file path, open Claude Desktop and navigate to:
+Profile → Settings → Developer → Edit Config)
 ## macOS
 
 ```text

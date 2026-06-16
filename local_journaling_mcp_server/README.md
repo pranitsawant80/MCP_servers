@@ -31,6 +31,10 @@ A Model Context Protocol (MCP) server built with FastMCP that allows users to ma
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
+Or
+```powershell
+pip install uv
+```
 
 ## macOS/Linux
 

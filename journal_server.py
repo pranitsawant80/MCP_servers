@@ -1,6 +1,18 @@
+import os
+import json
+import os   
+from ast import Add
 from fastmcp import FastMCP
 import sqlite3
-import os
+
+DAY_RATINGS_CONFIG_PATH = os.path.join(
+    os.path.dirname(__file__),
+    "day_ratings.json"
+)
+MOODS_CONFIG_PATH = os.path.join(
+    os.path.dirname(__file__),
+    "mood.json"
+)   
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "journal.db")
 
@@ -204,6 +216,23 @@ def get_statistics():
             "ratings": [{"rating": r[0], "count": r[1]} for r in ratings],
             "moods": [{"mood": m[0], "count": m[1]} for m in moods]
         }
+
+
+@mcp.resource("journal://day-ratings")
+def day_ratings():
+    with open(DAY_RATINGS_CONFIG_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    return data["day_ratings"]
+
+
+@mcp.resource("journal://moods")
+def moods():
+    with open(MOODS_CONFIG_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    return data["moods"]
+
 
 if __name__ == "__main__":
     mcp.run()

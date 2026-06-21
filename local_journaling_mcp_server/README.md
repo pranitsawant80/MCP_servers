@@ -117,7 +117,7 @@ uv add fastmcp
 ```text
 journal_tracker_server/
 │
-├── main.py
+├── journal.py
 ├── journal.db
 ├── pyproject.toml
 ├── README.md
@@ -126,7 +126,7 @@ journal_tracker_server/
 
 Where:
 
-* `main.py` contains the MCP server code
+* `journal.py` contains the MCP server code
 * `journal.db` is automatically created by SQLite
 * `.venv` contains project dependencies
 
@@ -137,7 +137,7 @@ Where:
 From the project root:
 
 ```bash
-uv run main.py
+uv run journal.py
 ```
 
 You should see the MCP server start successfully.
@@ -155,7 +155,7 @@ npx @modelcontextprotocol/inspector
 Run:
 
 ```bash
-uv run main.py
+uv run journal.py
 npx @modelcontextprotocol/inspector 
 ```
 
@@ -195,7 +195,7 @@ Replace paths with your actual project location.
         "--directory",
         "C:\\Users\\YourName\\journal_tracker_server",
         "run",
-        "main.py"
+        "journal.py"
       ]
     }
   }
@@ -213,7 +213,7 @@ Example for macOS/Linux:
         "--directory",
         "/Users/yourname/journal_tracker_server",
         "run",
-        "main.py"
+        "journal.py"
       ]
     }
   }

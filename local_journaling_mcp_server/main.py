@@ -181,6 +181,7 @@ def get_entries_for_summary(start_date, end_date):
 
         return [dict(zip(cols, row)) for row in cur.fetchall()]
 
+
 @mcp.resource("journal://day-ratings")
 def day_ratings():
     with open(DAY_RATINGS_CONFIG_PATH, "r", encoding="utf-8") as f:
@@ -195,7 +196,6 @@ def moods():
         data = json.load(f)
 
     return data["moods"]
-
 
 if __name__ == "__main__":
     mcp.run()

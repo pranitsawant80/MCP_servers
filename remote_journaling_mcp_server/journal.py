@@ -1,7 +1,7 @@
 from fastmcp import FastMCP
 import sqlite3
-import os
 import json
+import os
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "journal.db")
 DAY_RATINGS_CONFIG_PATH= os.path.join(os.path.dirname(__file__), "day_ratings.json")
@@ -202,4 +202,4 @@ def moods():
 
 
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run(transport="sse", host="0.0.0.0", port=8000)

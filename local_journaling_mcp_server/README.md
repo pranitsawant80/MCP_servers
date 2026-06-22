@@ -436,5 +436,5 @@ If Claude cannot connect, verify:
 
 # License
 
-MIT License
+MIT License 
  
